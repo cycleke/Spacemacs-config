@@ -38,7 +38,7 @@ This function should only modify configuration layer settings."
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-c++11 t
-            c-c++-enable-clang-support t)
+            c-c++-enable-clang-support nil)
      (python :variables
              python-test-runner '(nose pytest))
      latex
@@ -99,7 +99,8 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(
+                                      yasnippet-snippets)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -480,6 +481,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
         '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
           ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
           ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
+  (server-start)
   )
 
 (defun dotspacemacs/user-load ()
@@ -495,6 +497,12 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  (setq yas-snippet-dirs
+        '(
+          "~/.emacs.d/private/snippets"
+          "~/.emacs.d/layers/+completion/auto-completion/local/snippets"
+          "~/.emacs.d/elpa/26.1/develop/yasnippet-snippets-20180922.1928/snippets"
+          ))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -511,7 +519,13 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (youdao-dictionary names chinese-word-at-point yasnippet-snippets yapfify xterm-color wgrep web-mode web-beautify unfill toml-mode toc-org tagedit smex smeargle slim-mode shell-pop scss-mode sass-mode rainbow-mode rainbow-identifiers racer pyvenv pytest pyenv-mode py-isort pug-mode prettier-js pippel pipenv pip-requirements overseer orgit org-present org-pomodoro alert log4e gntp org-mime org-download org-bullets org-brain opencl-mode nameless mwim multi-term mmm-mode markdown-toc magit-svn magit-gitflow macrostep livid-mode skewer-mode live-py-mode json-navigator hierarchy json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc ivy-yasnippet ivy-xref ivy-rtags ivy-hydra importmagic epc ctable concurrent deferred impatient-mode simple-httpd htmlize helm-make projectile helm helm-core haml-mode google-c-style gnuplot glsl-mode gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flyspell-correct-ivy flyspell-correct flycheck-rust flycheck-rtags flycheck-pos-tip pos-tip flycheck pkg-info epl flx evil-org evil-magit magit magit-popup git-commit ghub treepy graphql with-editor eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav disaster diff-hl cython-mode cuda-mode counsel-css counsel swiper ivy company-web web-completion-data company-tern dash-functional tern company-statistics company-rtags rtags company-c-headers company-auctex company-anaconda company color-identifiers-mode clang-format cargo markdown-mode rust-mode browse-at-remote auto-yasnippet yasnippet auto-dictionary auto-compile packed auctex anaconda-mode pythonic f dash s ac-ispell auto-complete popup which-key use-package pcre2el org-plus-contrib hydra evil goto-chg undo-tree dotenv-mode diminish bind-map bind-key async))))
+    (youdao-dictionary names chinese-word-at-point yasnippet-snippets yapfify xterm-color wgrep web-mode web-beautify unfill toml-mode toc-org tagedit smex smeargle slim-mode shell-pop scss-mode sass-mode rainbow-mode rainbow-identifiers racer pyvenv pytest pyenv-mode py-isort pug-mode prettier-js pippel pipenv pip-requirements overseer orgit org-present org-pomodoro alert log4e gntp org-mime org-download org-bullets org-brain opencl-mode nameless mwim multi-term mmm-mode markdown-toc magit-svn magit-gitflow macrostep livid-mode skewer-mode live-py-mode json-navigator hierarchy json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc ivy-yasnippet ivy-xref ivy-rtags ivy-hydra importmagic epc ctable concurrent deferred impatient-mode simple-httpd htmlize helm-make projectile helm helm-core haml-mode google-c-style gnuplot glsl-mode gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flyspell-correct-ivy flyspell-correct flycheck-rust flycheck-rtags flycheck-pos-tip pos-tip flycheck pkg-info epl flx evil-org evil-magit magit magit-popup git-commit ghub treepy graphql with-editor eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav disaster diff-hl cython-mode cuda-mode counsel-css counsel swiper ivy company-web web-completion-data company-tern dash-functional tern company-statistics company-rtags rtags company-c-headers company-auctex company-anaconda company color-identifiers-mode clang-format cargo markdown-mode rust-mode browse-at-remote auto-yasnippet yasnippet auto-dictionary auto-compile packed auctex anaconda-mode pythonic f dash s ac-ispell auto-complete popup which-key use-package pcre2el org-plus-contrib hydra evil goto-chg undo-tree dotenv-mode diminish bind-map bind-key async)))
+ '(company-backends
+   (quote
+    (company-bbdb company-nxml company-css company-eclim company-semantic company-clang company-xcode company-cmake company-capf company-files
+                  (company-dabbrev-code company-gtags company-etags company-keywords)
+                  company-oddmuse company-dabbrev company-c-headers)))
+ )
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
