@@ -1,3 +1,5 @@
+(add-to-list 'load-path "~/.emacs.d/elpa/26.1/develop")
+
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 

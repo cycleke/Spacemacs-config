@@ -8,7 +8,7 @@
     (if (string= suffix "c")
         (compile (concat "gcc " filename " -o " progname " -O2 -Wall -lm")))
     (if (or (string= suffix "cc") (string= suffix "cpp"))
-        (compile (concat "g++ " filename " -o " progname " -O2 -Wall -lm -std=c++14")))
+        (compile (concat "g++ " filename " -o " progname " -O2 -Wall -lm -std=c++11")))
     (if (string= suffix "tex")
         (compile (concat "xelatex " filename)))
     ))
@@ -22,7 +22,7 @@
     (if (string= suffix "c")
         (compile (concat "gcc " filename " -o " progname " -g -Wall -lm")))
     (if (or (string= suffix "cc") (string= suffix "cpp"))
-        (compile (concat "g++ " filename " -o " progname " -g -Wall -lm -std=c++14")))
+        (compile (concat "g++ " filename " -o " progname " -g -Wall -lm -std=c++11")))
     ))
 
 (defun indent-buffer ()
