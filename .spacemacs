@@ -223,7 +223,10 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
+   dotspacemacs-themes '(
+                         oldlace
+                         organic-green
+                         spacemacs-dark
                          spacemacs-light)
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
@@ -241,7 +244,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
+   dotspacemacs-default-font '("Go Mono for Powerline"
                                :size 13
                                :weight normal
                                :width normal)
@@ -384,7 +387,7 @@ It should only modify the values of Spacemacs settings."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers t
 
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
@@ -519,13 +522,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (youdao-dictionary names chinese-word-at-point yasnippet-snippets yapfify xterm-color wgrep web-mode web-beautify unfill toml-mode toc-org tagedit smex smeargle slim-mode shell-pop scss-mode sass-mode rainbow-mode rainbow-identifiers racer pyvenv pytest pyenv-mode py-isort pug-mode prettier-js pippel pipenv pip-requirements overseer orgit org-present org-pomodoro alert log4e gntp org-mime org-download org-bullets org-brain opencl-mode nameless mwim multi-term mmm-mode markdown-toc magit-svn magit-gitflow macrostep livid-mode skewer-mode live-py-mode json-navigator hierarchy json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc ivy-yasnippet ivy-xref ivy-rtags ivy-hydra importmagic epc ctable concurrent deferred impatient-mode simple-httpd htmlize helm-make projectile helm helm-core haml-mode google-c-style gnuplot glsl-mode gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flyspell-correct-ivy flyspell-correct flycheck-rust flycheck-rtags flycheck-pos-tip pos-tip flycheck pkg-info epl flx evil-org evil-magit magit magit-popup git-commit ghub treepy graphql with-editor eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav disaster diff-hl cython-mode cuda-mode counsel-css counsel swiper ivy company-web web-completion-data company-tern dash-functional tern company-statistics company-rtags rtags company-c-headers company-auctex company-anaconda company color-identifiers-mode clang-format cargo markdown-mode rust-mode browse-at-remote auto-yasnippet yasnippet auto-dictionary auto-compile packed auctex anaconda-mode pythonic f dash s ac-ispell auto-complete popup which-key use-package pcre2el org-plus-contrib hydra evil goto-chg undo-tree dotenv-mode diminish bind-map bind-key async)))
- '(company-backends
-   (quote
-    (company-bbdb company-nxml company-css company-eclim company-semantic company-clang company-xcode company-cmake company-capf company-files
-                  (company-dabbrev-code company-gtags company-etags company-keywords)
-                  company-oddmuse company-dabbrev company-c-headers)))
- )
+    (oldlace-theme youdao-dictionary yasnippet-snippets yapfify xterm-color which-key wgrep web-mode web-beautify use-package unfill toml-mode toc-org tagedit smex smeargle slim-mode shell-pop scss-mode sass-mode rainbow-mode rainbow-identifiers racer pyvenv pytest pyenv-mode py-isort pug-mode prettier-js pippel pipenv pip-requirements pcre2el overseer orgit organic-green-theme org-present org-pomodoro org-mime org-download org-bullets org-brain opencl-mode nameless mwim multi-term mmm-mode markdown-toc magit-svn magit-gitflow macrostep livid-mode live-py-mode json-navigator json-mode js2-refactor js-doc ivy-yasnippet ivy-xref ivy-rtags ivy-hydra importmagic impatient-mode helm-make google-c-style gnuplot glsl-mode gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy flyspell-correct-ivy flycheck-rust flycheck-rtags flycheck-pos-tip flx evil-org evil-magit eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav dotenv-mode disaster diminish diff-hl cython-mode cuda-mode counsel-css company-web company-tern company-statistics company-rtags company-c-headers company-auctex company-anaconda color-identifiers-mode clang-format cargo browse-at-remote bind-map auto-yasnippet auto-dictionary auto-compile ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
