@@ -4,7 +4,7 @@
 
 (defun dotspacemacs/layers ()
   "Layer configuration:
-This function should only modify configuration layer settings."
+  This function should only modify configuration layer settings."
   (setq-default
    ;; Base distribution to use. This is a layer contained in the directory
    ;; `+distribution'. For now available distributions are `spacemacs-base'
@@ -124,9 +124,9 @@ This function should only modify configuration layer settings."
 
 (defun dotspacemacs/init ()
   "Initialization:
-This function is called at the very beginning of Spacemacs startup,
-before layer configuration.
-It should only modify the values of Spacemacs settings."
+  This function is called at the very beginning of Spacemacs startup,
+  before layer configuration.
+  It should only modify the values of Spacemacs settings."
   ;; This setq-default sexp is an exhaustive list of all the supported
   ;; spacemacs settings.
   (setq-default
@@ -229,6 +229,7 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
+                         underwater
                          spacemacs-dark
                          oldlace
                          organic-green
@@ -473,18 +474,18 @@ It should only modify the values of Spacemacs settings."
 
 (defun dotspacemacs/user-env ()
   "Environment variables setup.
-This function defines the environment variables for your Emacs session. By
-default it calls `spacemacs/load-spacemacs-env' which loads the environment
-variables declared in `~/.spacemacs.env' or `~/.spacemacs.d/.spacemacs.env'.
-See the header of this file for more information."
+  This function defines the environment variables for your Emacs session. By
+  default it calls `spacemacs/load-spacemacs-env' which loads the environment
+  variables declared in `~/.spacemacs.env' or `~/.spacemacs.d/.spacemacs.env'.
+  See the header of this file for more information."
   (spacemacs/load-spacemacs-env))
 
 (defun dotspacemacs/user-init ()
   "Initialization for user code:
-This function is called immediately after `dotspacemacs/init', before layer
-configuration.
-It is mostly for variables that should be set before packages are loaded.
-If you are unsure, try setting them in `dotspacemacs/user-config' first."
+  This function is called immediately after `dotspacemacs/init', before layer
+  configuration.
+  It is mostly for variables that should be set before packages are loaded.
+  If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq configuration-layer-elpa-archives
         '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
           ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
@@ -492,46 +493,27 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (server-start)
   )
 
+
+(setq yas-snippet-dirs
+      '(
+        "~/.spacemacs.d/snippets"
+        "~/.emacs.d/layers/+completion/auto-completion/local/snippets"
+        ;;"~/.emacs.d/elpa//develop/yasnippet-snippets-20180922.1928/snippets"
+        ))
+(setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
+
+
 (defun dotspacemacs/user-load ()
   "Library to load while dumping.
-This function is called only while dumping Spacemacs configuration. You can
-`require' or `load' the libraries of your choice that will be included in the
-dump."
+  This function is called only while dumping Spacemacs configuration. You can
+  `require' or `load' the libraries of your choice that will be included in the
+  dump."
   )
 
 (defun dotspacemacs/user-config ()
   "Configuration for user code:
-This function is called at the very end of Spacemacs startup, after layer
-configuration.
-Put your configuration code here, except for variables that should be set
-before packages are loaded."
-  (setq yas-snippet-dirs
-        '(
-          "~/.emacs.d/private/snippets"
-          "~/.emacs.d/layers/+completion/auto-completion/local/snippets"
-          "~/.emacs.d/elpa/26.1/develop/yasnippet-snippets-20180922.1928/snippets"
-          ))
+  This function is called at the very end of Spacemacs startup, after layer
+  configuration.
+  Put your configuration code here, except for variables that should be set
+  before packages are loaded."
   )
-
-;; Do not write anything past this comment. This is where Emacs will
-;; auto-generate custom variable definitions.
-(defun dotspacemacs/emacs-custom-settings ()
-  "Emacs custom settings.
-This is an auto-generated function, do not modify its content directly, use
-Emacs customize menu instead.
-This function is called at the very end of Spacemacs initialization."
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (underwater-theme youdao-dictionary yasnippet-snippets yapfify xterm-color which-key wgrep web-mode web-beautify use-package unfill toml-mode toc-org tagedit smex smeargle slim-mode shell-pop scss-mode sass-mode rainbow-mode rainbow-identifiers racer pyvenv pytest pyim pyenv-mode py-isort pug-mode prettier-js pippel pipenv pip-requirements pcre2el overseer orgit organic-green-theme org-present org-pomodoro org-mime org-download org-bullets org-brain opencl-mode oldlace-theme nameless mwim multi-term mmm-mode markdown-toc magit-svn magit-gitflow macrostep livid-mode live-py-mode less-css-mode json-navigator json-mode js2-refactor js-doc ivy-yasnippet ivy-xref ivy-rtags ivy-hydra importmagic impatient-mode highlight-parentheses helm-make google-c-style gnuplot glsl-mode gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy flyspell-correct-ivy flycheck-rust flycheck-rtags flycheck-pos-tip flx evil-org evil-magit eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav dotenv-mode disaster diminish diff-hl cython-mode cuda-mode counsel-css company-web company-tern company-statistics company-rtags company-c-headers company-auctex company-anaconda color-identifiers-mode clang-format cargo browse-at-remote bind-map auto-yasnippet auto-dictionary auto-compile ac-ispell))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-)
