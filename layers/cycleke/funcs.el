@@ -1,4 +1,6 @@
-(defun compile-without-debug ()
+(require 'cl-lib)
+
+(defun cycleke/compile-without-debug ()
   "Compile current buffer"
   (interactive)
   (let (filename suffix progname)
@@ -12,7 +14,7 @@
     (if (string= suffix "tex")
         (compile (concat "xelatex " filename)))
     ))
-(defun compile-with-debug ()
+(defun cycleke/compile-with-debug ()
   "Compile current buffer"
   (interactive)
   (let (filename suffix progname)
@@ -25,11 +27,11 @@
         (compile (concat "g++ " filename " -o " progname " -g -Wall -lm -std=c++11")))
     ))
 
-(defun indent-buffer ()
+(defun cycleke/indent-buffer ()
   "Indent the currently visited buffer."
   (interactive)
   (indent-region (point-min) (point-max)))
-(defun indent-region-or-buffer ()
+(defun cycleke/indent-region-or-buffer ()
   "Indent a region of selected, otherwise the whole buffer."
   (interactive)
   (save-excursion
@@ -41,14 +43,14 @@
         (indent-buffer)
         (message "Indented the buffer.")))))
 
-(defun my-web-mode-indent-setup ()
+(defun cycleke/web-mode-indent-setup ()
   (setq web-mode-markup-indent-offset 2) ; web-mode, html tag in html file
   (setq web-mode-css-indent-offset 2)    ; web-mode, css in html file
   (setq web-mode-code-indent-offset 2)   ; web-mode, js code in html file
   )
-(add-hook 'web-mode-hook 'my-web-mode-indent-setup)
+(add-hook 'web-mode-hook 'cycleke/web-mode-indent-setup)
 
-(defun my-toggle-web-indent ()
+(defun cycleke/toggle-web-indent ()
   (interactive)
   ;; web development
   (if (or (eq major-mode 'js-mode) (eq major-mode 'js2-mode))
@@ -63,3 +65,42 @@
   (if (eq major-mode 'css-mode)
       (setq css-indent-offset (if (= css-indent-offset 2) 4 2)))
   (setq indent-tabs-mode nil))
+
+(defconst default-elpa-mirror
+  (concat user-home-directory "elpa-mirror"))
+(defvar cycleke-configuration-elpa-mirror-path '()
+  "List of additional paths where to look for configuration local mirrors.
+Paths must have a trailing slash (ie. `~/.mycontribs/')")
+
+(defun cycleke/load-local-mirror ()
+  "Load local mirrors. This is for offline using."
+  (interactive)
+  (let* ((current-elpa-mirror-paths (mapcar (lambda (dir) (expand-file-name dir))
+                                            (cl-pushnew
+                                             default-elpa-mirror
+                                             cycleke-configuration-elpa-mirror-path)))
+         (other-choice "Another directory...")
+         (helm-lp-source
+          `((name . "Configuration ELPA Mirror Paths")
+            (candidates . ,(append current-elpa-mirror-paths
+                                   (list other-choice)))
+            (action . (lambda (c) c))))
+         (elpa-mirror-path-sel (if (configuration-layer/layer-used-p 'ivy)
+                                   (ivy-read "Configuration ELPA Mirrors path: "
+                                             (append current-elpa-mirror-paths
+                                                     (list other-choice)))
+                                 (helm :sources helm-lp-source
+                                       :prompt "Configuration ELPA Mirrors path: ")))
+         (elpa-mirror-path (cond
+                            ((string-equal elpa-mirror-path-sel other-choice)
+                             (read-directory-name (concat "Other configuration "
+                                                          "ELPA Mirror path: ") "~/" ))
+                            ((member elpa-mirror-path-sel current-elpa-mirror-paths)
+                             elpa-mirror-path-sel)
+                            (t
+                             (error "Please select an option from the list")))))
+    ;;(layer-dir (concat layer-path "/" name)))
+    (setq configuration-layer-elpa-archives
+          `(("melpa" . ,(concat elpa-mirror-path "melpa/"))
+            ("org"   . ,(concat elpa-mirror-path "org/"))
+            ("gnu"   . ,(concat elpa-mirror-path "gnu/"))))))
