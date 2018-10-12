@@ -54,6 +54,7 @@
      rust
      javascript
      html
+     vimscript
      ;; private
      cycleke
      google-c-style
@@ -449,11 +450,11 @@
    ;; %z - mnemonics of buffer, terminal, and keyboard coding systems
    ;; %Z - like %z, but including the end-of-line format
    ;; (default "%I@%S")
-   dotspacemacs-frame-title-format "%I@%S"
+   dotspacemacs-frame-title-format "%b[%t] %a"
 
    ;; Format specification for setting the icon title format
    ;; (default nil - same as frame-title-format)
-   dotspacemacs-icon-title-format nil
+   dotspacemacs-icon-title-format t
 
    ;; Delete whitespace while saving buffer. Possible values are `all'
    ;; to aggressively delete empty line and long sequences of whitespace,

@@ -1,6 +1,6 @@
-(setq frame-title-format
-      '("%S" (buffer-file-name "%f"
-                               (dired-directory dired-directory "%b"))))
+;;(setq frame-title-format
+;;      '("%S" (buffer-file-name "%f"
+;;                               (dired-directory dired-directory "%b"))))
 
 (display-time-mode t)
 (setq display-time-24hr-format t)
