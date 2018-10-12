@@ -40,7 +40,7 @@
           (indent-region (region-beginning) (region-end))
           (message "Indented selected region."))
       (progn
-        (indent-buffer)
+        (cycleke/indent-buffer)
         (message "Indented the buffer.")))))
 
 (defun cycleke/web-mode-indent-setup ()
