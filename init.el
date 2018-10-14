@@ -9,7 +9,7 @@
    ;; Base distribution to use. This is a layer contained in the directory
    ;; `+distribution'. For now available distributions are `spacemacs-base'
    ;; or `spacemacs'. (default 'spacemacs)
-   dotspacemacs-distribution 'spacemacs-base
+   dotspacemacs-distribution 'spacemacs
 
    ;; Lazy installation of layers (i.e. layers are installed only when a file
    ;; with a supported type is opened). Possible values are `all', `unused'
@@ -92,7 +92,7 @@
                       auto-completion-tab-key-behavior 'cycle
                       auto-completion-complete-with-key-sequence nil
                       auto-completion-complete-with-key-sequence-delay 0.0
-                      auto-completion-private-snippets-directory (concat (car dotspacemacs-configuration-layer-path) "snippets/")
+                      ;;auto-completion-private-snippets-directory (concat (car dotspacemacs-configuration-layer-path) "snippets/")
                       :disabled-for org markdown)
      version-control
      )
@@ -490,6 +490,11 @@
         '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
           ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
           ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
+  ;;(setq configuration-layer-elpa-archives
+  ;;      `(("melpa" . ,(concat user-home-directory "elpa-mirror/melpa/"))
+  ;;        ("org"   . ,(concat user-home-directory "elpa-mirror/org/"))
+  ;;        ("gnu"   . ,(concat user-home-directory "elpa-mirror/gnu/"))))
+
   (server-start)
   )
 

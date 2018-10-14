@@ -32,7 +32,7 @@
 (defconst cycleke-packages
   '(
     pyim
-    highlight-parentheses
+    ;;highlight-parentheses
     )
   "The list of Lisp packages required by the cycleke layer.
 
@@ -74,9 +74,9 @@ Each entry is either:
             default-input-method "chinese-pyim")
       (evilified-state-evilify pyim-dicts-manager-mode pyim-dicts-manager-mode-map))))
 
-(defun cycleke/init-highlight-parentheses()
-  (use-package highlight-parentheses
-    :ensure t
-    :init (global-highlight-parentheses-mode)))
+;;(defun cycleke/init-highlight-parentheses()
+;;  (use-package highlight-parentheses
+;;    :ensure t
+;;    :init (global-highlight-parentheses-mode)))
 
 ;;; packages.el ends here
