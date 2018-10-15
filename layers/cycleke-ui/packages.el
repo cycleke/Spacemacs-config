@@ -1,4 +1,4 @@
-;;; packages.el --- cycleke layer packages file for Spacemacs.
+;;; packages.el --- cycleke-ui layer packages file for Spacemacs.
 ;;
 ;; Copyright (c) 2012-2018 Sylvain Benner & Contributors
 ;;
@@ -18,23 +18,22 @@
 ;;
 ;;
 ;; Briefly, each package to be installed or configured by this layer should be
-;; added to `cycleke-packages'. Then, for each package PACKAGE:
+;; added to `cycleke-ui-packages'. Then, for each package PACKAGE:
 ;;
 ;; - If PACKAGE is not referenced by any other Spacemacs layer, define a
-;;   function `cycleke/init-PACKAGE' to load and initialize the package.
+;;   function `cycleke-ui/init-PACKAGE' to load and initialize the package.
 
 ;; - Otherwise, PACKAGE is already referenced by another Spacemacs layer, so
-;;   define the functions `cycleke/pre-init-PACKAGE' and/or
-;;   `cycleke/post-init-PACKAGE' to customize the package as it is loaded.
+;;   define the functions `cycleke-ui/pre-init-PACKAGE' and/or
+;;   `cycleke-ui/post-init-PACKAGE' to customize the package as it is loaded.
 
 ;;; Code:
 
-(defconst cycleke-packages
+(defconst cycleke-ui-packages
   '(
-    pyim
-    ;;highlight-parentheses
+    doom-themes
     )
-  "The list of Lisp packages required by the cycleke layer.
+  "The list of Lisp packages required by the cycleke-ui layer.
 
 Each entry is either:
 
@@ -61,22 +60,13 @@ Each entry is either:
       - A list beginning with the symbol `recipe' is a melpa
         recipe.  See: https://github.com/milkypostman/melpa#recipe-format")
 
-
-(defun cycleke/init-pyim()
-  (use-package pyim
-    :if (eq 'pinyin chinese-default-input-method)
-    :init
-    (progn
-      (setq pyim-use-tooltip t
-            pyim-dicts-directory spacemacs-cache-directory
-            pyim-personal-file (concat spacemacs-cache-directory
-                                       "pyim-personal.txt")
-            default-input-method "pyim")
-      (evilified-state-evilify pyim-dicts-manager-mode pyim-dicts-manager-mode-map))))
-
 ;;(defun cycleke/init-highlight-parentheses()
 ;;  (use-package highlight-parentheses
 ;;    :ensure t
 ;;    :init (global-highlight-parentheses-mode)))
+
+(defun cycleke-ui/init-doom-themes ()
+  (use-package doom-themes
+    :ensure t))
 
 ;;; packages.el ends here
