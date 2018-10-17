@@ -486,14 +486,15 @@
   configuration.
   It is mostly for variables that should be set before packages are loaded.
   If you are unsure, try setting them in `dotspacemacs/user-config' first."
-  (setq configuration-layer-elpa-archives
-        '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-          ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
-          ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
-  ;;(setq configuration-layer-elpa-archives
-  ;;      `(("melpa" . ,(concat user-home-directory "elpa-mirror/melpa/"))
-  ;;        ("org"   . ,(concat user-home-directory "elpa-mirror/org/"))
-  ;;        ("gnu"   . ,(concat user-home-directory "elpa-mirror/gnu/"))))
+  (if t
+      (setq configuration-layer-elpa-archives
+            '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+              ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
+              ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
+    (setq configuration-layer-elpa-archives
+          `(("melpa" . ,(concat user-home-directory "elpa-mirror/melpa/"))
+            ("org"   . ,(concat user-home-directory "elpa-mirror/org/"))
+            ("gnu"   . ,(concat user-home-directory "elpa-mirror/gnu/")))))
 
   (server-start)
   )
@@ -503,7 +504,7 @@
       '(
         "~/.spacemacs.d/snippets"
         "~/.emacs.d/layers/+completion/auto-completion/local/snippets"
-        "/home/cycleke/.emacs.d/elpa/25.2/develop/yasnippet-snippets-20180922.1928/snippets"
+        "/home/cycleke/.emacs.d/elpa/26.1/develop/yasnippet-snippets-20180922.1928/snippets"
         ))
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
 
