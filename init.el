@@ -503,7 +503,7 @@
       '(
         "~/.spacemacs.d/snippets"
         "~/.emacs.d/layers/+completion/auto-completion/local/snippets"
-        "/home/cycleke/.emacs.d/elpa/26.1/develop/yasnippet-snippets-20180922.1928/snippets"
+        "/home/cycleke/.emacs.d/elpa/26.1/develop/yasnippet-snippets-[0-9]\{8\}.[0-9]\{4\}/snippets"
         ))
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
 
