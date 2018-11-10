@@ -9,7 +9,7 @@
    ;; Base distribution to use. This is a layer contained in the directory
    ;; `+distribution'. For now available distributions are `spacemacs-base'
    ;; or `spacemacs'. (default 'spacemacs)
-   dotspacemacs-distribution 'spacemacs-base
+   dotspacemacs-distribution 'spacemacs
 
    ;; Lazy installation of layers (i.e. layers are installed only when a file
    ;; with a supported type is opened). Possible values are `all', `unused'
@@ -249,7 +249,7 @@
 
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Go Mono for Powerline"
+   dotspacemacs-default-font '("SauceCodePro Nerd Font"
                                :size 13
                                :weight normal
                                :width normal)
@@ -392,7 +392,7 @@
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers t
+   dotspacemacs-line-numbers nil
 
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
@@ -414,7 +414,7 @@
 
    ;; If non-nil, start an Emacs server if one is not already running.
    ;; (default nil)
-   dotspacemacs-enable-server nil
+   dotspacemacs-enable-server t
 
    ;; Set the emacs server socket location.
    ;; If nil, uses whatever the Emacs default is, otherwise a directory path
@@ -495,7 +495,7 @@
             ("org"   . ,(concat user-home-directory "elpa-mirror/org/"))
             ("gnu"   . ,(concat user-home-directory "elpa-mirror/gnu/")))))
 
-  (server-start)
+  ;;(server-start)
   )
 
 
