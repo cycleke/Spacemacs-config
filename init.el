@@ -38,7 +38,7 @@
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-c++11 t
-            c-c++-enable-clang-support nil)
+            c-c++-enable-clang-support t)
      (python :variables
              python-enable-yapf-format-on-save t
              python-fill-column 80
@@ -57,7 +57,7 @@
      vimscript
      ;; private
      cycleke
-     google-c-style
+     ;;google-c-style
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
