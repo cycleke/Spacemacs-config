@@ -57,6 +57,7 @@
      vimscript
      ;; private
      cycleke
+     irony
      ;;google-c-style
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -110,7 +111,24 @@
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages
+   '(magit-gh-pulls magit-gitflow  evil-mc realgud tern company-tern
+                    evil-args evil-ediff evil-exchange evil-unimpaired
+                    evil-indent-plus volatile-highlights smartparens
+                    spaceline holy-mode skewer-mode rainbow-delimiters
+                    highlight-indentation vi-tilde-fringe eyebrowse ws-butler
+                    org-bullets smooth-scrolling org-repo-todo org-download org-timer
+                    livid-mode git-gutter git-gutter-fringe  evil-escape
+                    leuven-theme gh-md evil-lisp-state spray lorem-ipsum symon
+                    ac-ispell ace-jump-mode auto-complete auto-dictionary
+                    clang-format define-word google-translate disaster epic
+                    fancy-battery org-present orgit orglue spacemacs-theme
+                    helm-flyspell flyspell-correct-helm clean-aindent-mode
+                    helm-c-yasnippet ace-jump-helm-line helm-make magithub
+                    helm-themes helm-swoop helm-spacemacs-help smeargle
+                    ido-vertical-mode flx-ido company-quickhelp
+                    window-purpose ivy-purpose helm-purpose spacemacs-purpose-popwin
+     )
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -495,7 +513,6 @@
             ("org"   . ,(concat user-home-directory "elpa-mirror/org/"))
             ("gnu"   . ,(concat user-home-directory "elpa-mirror/gnu/")))))
 
-  ;;(server-start)
   )
 
 
