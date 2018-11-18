@@ -11,6 +11,5 @@
 
 (configuration-layer/declare-layer '(
                                      cycleke-ui
-                                     cycleke-org
                                      cycleke-programming
                                      ))

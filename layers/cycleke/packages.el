@@ -2,8 +2,8 @@
 ;;
 ;; Copyright (c) 2012-2018 Sylvain Benner & Contributors
 ;;
-;; Author: cycleke <cycleke@cycleke-MiPro>
-;; URL: https://github.com/syl20bnr/spacemacs
+;; Author: cycleke <cycleke@gmail.com>
+;; URL: https://github.com/cycleke/Spacemacs-config
 ;;
 ;; This file is not part of GNU Emacs.
 ;;

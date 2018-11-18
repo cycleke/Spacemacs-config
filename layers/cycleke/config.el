@@ -1,4 +1,23 @@
-(add-to-list 'load-path "~/.emacs.d/elpa/25.2/develop")
+(add-to-list 'load-path "~/.emacs.d/elpa/[0-9]\{2\}.[0-9/develop")
+
+(defvar org-agenda-dir ""
+  "gtd org files location")
+
+(defvar deft-dir ""
+  "deft org files locaiton")
+
+(defvar blog-admin-dir ""
+  "blog-admin files location")
+
+(if (and (spacemacs/system-is-mswindows) window-system)
+    (setq
+     org-agenda-dir "c:/Users/cyclcke/Documents/org-notes"
+     deft-dir "c:/Users/cyclcke/Documents/org-notes"
+     blog-admin-dir "c:/Users/cyclcke/Documents/org-notes")
+  (setq
+   org-agenda-dir "~/org-notes"
+   deft-dir "~/org-notes"
+   blog-admin-dir "~/org-notes"))
 
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))

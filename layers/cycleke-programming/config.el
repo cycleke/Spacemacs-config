@@ -1,12 +1,4 @@
 (require 'flycheck)
-(require 'google-c-style)
-
-
-(setq auto-mode-alist
-      (append
-       '(("\\.js\\'" . js2-mode)
-         ("\\.html\\'" . web-mode))
-       auto-mode-alist))
 
 (add-hook 'c-mode-hook 'flycheck-mode)
 (add-hook 'c++-mode-hook 'flycheck-mode)
@@ -20,9 +12,6 @@
 (add-hook 'java-mode-hook 'hs-minor-mode)
 (add-hook 'python-mode-hook 'hs-minor-mode)
 (add-hook 'emacs-lisp-mode-hook 'hs-minor-mode)
-
-;;(add-hook 'c-mode-common-hook 'google-set-c-style)
-;;(add-hook 'c-mode-common-hook 'google-make-newline-indent)
 
 (setq tab-width 2)
 (setq tab-stop-list ())

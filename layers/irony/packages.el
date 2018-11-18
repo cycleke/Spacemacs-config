@@ -34,8 +34,9 @@
       :commands company-irony
       :init
       (progn
-        ;;(push 'company-irony company-backends-c-mode-common)
-        (add-to-list 'company-backends 'company-irony)
+        (eval-after-load 'company
+          '(push 'company-irony company-backends-c-mode-common))
+        ;;(add-to-list 'company-backends 'company-irony)
         (add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)))))
 
 (when (configuration-layer/layer-usedp 'auto-completion)

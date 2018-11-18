@@ -34,38 +34,8 @@
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     ;; language
-     (c-c++ :variables
-            c-c++-default-mode-for-headers 'c++-mode
-            c-c++-enable-c++11 t
-            c-c++-enable-clang-support t)
-     (python :variables
-             python-enable-yapf-format-on-save t
-             python-fill-column 80
-             python-sort-imports-on-save t
-             python-test-runner '(nose pytest))
-     latex
-     emacs-lisp
-     markdown
-     (chinese :packages youdao-dictionary fcitx
-              :variables chinese-enable-fcitx nil
-              chinese-enable-youdao-dict t)
-     (org :variables org-want-todo-bindings t)
-     rust
-     javascript
-     html
-     vimscript
-     ;; private
-     cycleke
-     irony
-     ;;google-c-style
-     ;; ----------------------------------------------------------------
-     ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-     ;; <M-m f e R> (Emacs style) to install them.
-     ;; ----------------------------------------------------------------
      ;; tool
-     ivy
+     (ivy :variables ivy-enable-advanced-buffer-information t)
      (colors :variables
              colors-colorize-identifiers 'all
              colors-enable-nyan-cat-progress-bar t)
@@ -77,24 +47,60 @@
      (syntax-checking :variables
                       syntax-checking-enable-by-default nil
                       syntax-checking-enable-tooltips nil)
-     (spell-checking :variables
-                     spell-checking-enable-by-default nil)
+     (spell-checking :variables spell-checking-enable-by-default nil)
+     (spacemacs-layouts :variables
+                        layouts-autosave-delay 300
+                        layouts-enable-autosave nil)
      (git :variables
           git-magit-status-fullscreen t
           magit-push-always-verify nil
           magit-save-repository-buffers 'dontask
           magit-auto-revert-buffers 'silent
-          magit-refs-show-commit-count 'all)
+          magit-refs-show-commit-count 'all
+          magit-revision-show-gravatars nil)
+     (ibuffer :variables ibuffer-group-buffers-by 'projects)
      (auto-completion :variables
                       auto-complete-enable-sort-by-usage t
                       auto-complete-enable-snippets-in-popup t
-                      auto-completion-return-key-behavior 'complete
-                      auto-completion-tab-key-behavior 'cycle
-                      auto-completion-complete-with-key-sequence nil
-                      auto-completion-complete-with-key-sequence-delay 0.0
+                      ;;auto-completion-return-key-behavior 'complete
+                      ;;auto-completion-tab-key-behavior 'cycle
+                      ;;auto-completion-complete-with-key-sequence nil
+                      ;;auto-completion-complete-with-key-sequence-delay 0.0
                       ;;auto-completion-private-snippets-directory (concat (car dotspacemacs-configuration-layer-path) "snippets/")
                       :disabled-for org markdown)
      version-control
+     (gtags :disabled-for clojure emacs-lisp javascript latex python shell-scripts)
+     ;; language
+     (c-c++ :variables
+            c-c++-default-mode-for-headers 'c++-mode
+            c-c++-enable-c++11 t
+            c-c++-enable-clang-support t)
+     (python :variables
+             python-enable-yapf-format-on-save t
+             python-fill-column 80
+             python-sort-imports-on-save t
+             python-test-runner '(nose pytest))
+     (clojure :variables clojure-enable-fancify-symbols t)
+     latex
+     emacs-lisp
+     markdown
+     (chinese :packages youdao-dictionary fcitx
+              :variables chinese-enable-fcitx nil
+              chinese-enable-youdao-dict t)
+     (org :variables org-want-todo-bindings t)
+     rust
+     (javascript :variables javascript-backend 'nil)
+     html
+     vimscript
+     ;; private
+     cycleke
+     irony
+     ;;google-c-style
+     ;; ----------------------------------------------------------------
+     ;; Example of useful layers you may want to use right away.
+     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
+     ;; <M-m f e R> (Emacs style) to install them.
+     ;; ----------------------------------------------------------------
      )
 
    ;; List of additional packages that will be installed without being
@@ -128,7 +134,7 @@
                     helm-themes helm-swoop helm-spacemacs-help smeargle
                     ido-vertical-mode flx-ido company-quickhelp
                     window-purpose ivy-purpose helm-purpose spacemacs-purpose-popwin
-     )
+                    )
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -137,7 +143,8 @@
    ;; installs only the used packages but won't delete unused ones. `all'
    ;; installs *all* packages supported by Spacemacs and never uninstalls them.
    ;; (default is `used-only')
-   dotspacemacs-install-packages 'used-only))
+   dotspacemacs-install-packages 'used-only
+   dotspacemacs-delete-orphan-packages t))
 
 (defun dotspacemacs/init ()
   "Initialization:
@@ -270,7 +277,8 @@
    dotspacemacs-default-font '("SauceCodePro Nerd Font"
                                :size 13
                                :weight normal
-                               :width normal)
+                               :width normal
+                               :powerline-scale 1.1)
 
    ;; The leader key (default "SPC")
    dotspacemacs-leader-key "SPC"
@@ -503,7 +511,7 @@
   configuration.
   It is mostly for variables that should be set before packages are loaded.
   If you are unsure, try setting them in `dotspacemacs/user-config' first."
-  (if nil
+  (if t
       (setq configuration-layer-elpa-archives
             '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
               ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
@@ -538,4 +546,48 @@
   configuration.
   Put your configuration code here, except for variables that should be set
   before packages are loaded."
+
+  ;; 解决org表格里面中英文对齐的问题
+  (when (configuration-layer/layer-usedp 'chinese)
+    (when (and (spacemacs/system-is-mac) window-system)
+      (spacemacs//set-monospaced-font "Source Code Pro for powerline" "Hiragino Sans GB" 14 16)))
+  ;; Setting Chinese Font
+  (when (and (spacemacs/system-is-mswindows) window-system)
+    (setq ispell-program-name "aspell")
+    (setq w32-pass-alt-to-system nil)
+    (setq w32-apps-modifier 'super)
+    (dolist (charset '(kana han symbol cjk-misc bopomofo))
+      (set-fontset-font (frame-parameter nil 'font)
+                        charset
+                        (font-spec :family "Microsoft Yahei" :size 14))))
+
+  (fset 'evil-visual-update-x-selection 'ignore)
+
+  (setq split-width-threshold 120)
+
+  (spacemacs|add-company-backends :modes text-mode)
+
+  (add-hook 'doc-view-mode-hook 'auto-revert-mode)
+
+  (spacemacs|diminish helm-gtags-mode)
+  (spacemacs|diminish ggtags-mode)
+  (spacemacs|diminish which-key-mode)
+  (spacemacs|diminish spacemacs-whitespace-cleanup-mode)
+  (spacemacs|diminish counsel-mode)
+
+  (evilified-state-evilify-map special-mode-map :mode special-mode)
+
+  (setq auto-mode-alist
+        (append
+         '(("\\.js\\'" . js2-mode)
+           ("\\.html\\'" . web-mode))
+         auto-mode-alist))
+  (add-to-list 'auto-mode-alist
+               '("Capstanfile\\'" . yaml-mode))
+
+  (setq inhibit-compacting-font-caches t)
+  (global-display-line-numbers-mode -1)
+
+  (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
+  (load custom-file 'no-error 'no-message)
   )
