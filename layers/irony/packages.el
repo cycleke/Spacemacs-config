@@ -16,7 +16,8 @@
       (add-hook 'c++-mode-hook 'irony-mode))
     :config
     (progn
-      (setq irony-user-dir (f-slash (f-join user-home-directory "bin" "irony")))
+      (eval-after-load 'f
+        '(setq irony-user-dir (f-slash (f-join user-home-directory "bin" "irony"))))
       (setq irony-server-install-prefix irony-user-dir)
       (add-hook 'c++-mode-hook (lambda () (setq irony-additional-clang-options '("-std=c++11"))))
       (defun irony/irony-mode-hook ()
