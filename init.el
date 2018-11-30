@@ -62,11 +62,10 @@
      (auto-completion :variables
                       auto-complete-enable-sort-by-usage t
                       auto-complete-enable-snippets-in-popup t
-                      ;;auto-completion-return-key-behavior 'complete
-                      ;;auto-completion-tab-key-behavior 'cycle
-                      ;;auto-completion-complete-with-key-sequence nil
-                      ;;auto-completion-complete-with-key-sequence-delay 0.0
-                      ;;auto-completion-private-snippets-directory (concat (car dotspacemacs-configuration-layer-path) "snippets/")
+                      auto-completion-return-key-behavior 'complete
+                      auto-completion-tab-key-behavior 'cycle
+                      auto-completion-complete-with-key-sequence nil
+                      auto-completion-complete-with-key-sequence-delay 0.08
                       :disabled-for org markdown)
      version-control
      (gtags :disabled-for clojure emacs-lisp javascript latex python shell-scripts)
@@ -274,7 +273,7 @@
 
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("SauceCodePro Nerd Font"
+   dotspacemacs-default-font '("Source Code Pro for Powerline"
                                :size 13
                                :weight normal
                                :width normal
@@ -377,7 +376,7 @@
    ;; If non-nil the frame is maximized when Emacs starts up.
    ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
    ;; (default nil) (Emacs 24.4+ only)
-   dotspacemacs-maximized-at-startup t
+   dotspacemacs-maximized-at-startup nil
 
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's active or selected.
@@ -511,7 +510,7 @@
   configuration.
   It is mostly for variables that should be set before packages are loaded.
   If you are unsure, try setting them in `dotspacemacs/user-config' first."
-  (if t
+  (if nil
       (setq configuration-layer-elpa-archives
             '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
               ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
