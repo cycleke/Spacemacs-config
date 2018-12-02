@@ -65,15 +65,16 @@
                       auto-completion-return-key-behavior 'complete
                       auto-completion-tab-key-behavior 'cycle
                       auto-completion-complete-with-key-sequence nil
-                      auto-completion-complete-with-key-sequence-delay 0.08
+                      auto-completion-complete-with-key-sequence-delay nil
                       :disabled-for org markdown)
      version-control
+     lsp
      (gtags :disabled-for clojure emacs-lisp javascript latex python shell-scripts)
      ;; language
      (c-c++ :variables
-            c-c++-default-mode-for-headers 'c++-mode
-            c-c++-enable-c++11 t
-            c-c++-enable-clang-support t)
+            ;;c-c++-enable-c++11 t
+            ;;c-c++-enable-clang-support t
+            c-c++-default-mode-for-headers 'c++-mode)
      (python :variables
              python-enable-yapf-format-on-save t
              python-fill-column 80
@@ -90,6 +91,7 @@
      rust
      (javascript :variables javascript-backend 'nil)
      html
+     yaml
      vimscript
      ;; private
      cycleke
@@ -520,6 +522,11 @@
             ("org"   . ,(concat user-home-directory "elpa-mirror/org/"))
             ("gnu"   . ,(concat user-home-directory "elpa-mirror/gnu/")))))
 
+  (setq company-backends-c-mode-common '((company-c-headers
+                                          company-irony
+                                          company-irony-c-headers
+                                          company-dabbrev :with company-yasnippet
+                                         )))
   )
 
 

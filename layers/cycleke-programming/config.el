@@ -13,6 +13,12 @@
 (add-hook 'python-mode-hook 'hs-minor-mode)
 (add-hook 'emacs-lisp-mode-hook 'hs-minor-mode)
 
+(add-hook 'c-mode-common-hook
+          (lambda ()
+            (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
+              (ggtags-mode 1))))
+
+
 (setq tab-width 2)
 (setq tab-stop-list ())
 (setq default-tab-width 2)
