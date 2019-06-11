@@ -72,8 +72,8 @@
      (gtags :disabled-for clojure emacs-lisp javascript latex python shell-scripts)
      ;; language
      (c-c++ :variables
-            ;;c-c++-enable-c++11 t
-            ;;c-c++-enable-clang-support t
+            c-c++-enable-c++11 t
+            c-c++-enable-clang-support t
             c-c++-default-mode-for-headers 'c++-mode)
      (python :variables
              python-enable-yapf-format-on-save t
@@ -125,7 +125,7 @@
                     spaceline holy-mode skewer-mode rainbow-delimiters
                     highlight-indentation vi-tilde-fringe eyebrowse ws-butler
                     org-bullets smooth-scrolling org-repo-todo org-download org-timer
-                    livid-mode git-gutter git-gutter-fringe  evil-escape
+                    livid-mode git-gutter git-gutter-fringe
                     leuven-theme gh-md evil-lisp-state spray lorem-ipsum symon
                     ac-ispell ace-jump-mode auto-complete auto-dictionary
                     define-word google-translate disaster epic
@@ -254,10 +254,10 @@
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
+                         spacemacs-dark
                          oldlace
                          organic-green
                          doom-city-lights
-                         spacemacs-dark
                          spacemacs-light)
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
@@ -275,8 +275,8 @@
 
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro for Powerline"
-                               :size 13
+   dotspacemacs-default-font '("GoMono Nerd Font"
+                               :size 15
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -512,21 +512,16 @@
   configuration.
   It is mostly for variables that should be set before packages are loaded.
   If you are unsure, try setting them in `dotspacemacs/user-config' first."
-  (if nil
-      (setq configuration-layer-elpa-archives
-            '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-              ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
-              ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
-    (setq configuration-layer-elpa-archives
-          `(("melpa" . ,(concat user-home-directory "elpa-mirror/melpa/"))
-            ("org"   . ,(concat user-home-directory "elpa-mirror/org/"))
-            ("gnu"   . ,(concat user-home-directory "elpa-mirror/gnu/")))))
+  (setq configuration-layer-elpa-archives
+        '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+          ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
+          ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
 
   (setq company-backends-c-mode-common '((company-c-headers
                                           company-irony
                                           company-irony-c-headers
                                           company-dabbrev :with company-yasnippet
-                                         )))
+                                          )))
   )
 
 
@@ -534,7 +529,6 @@
       '(
         "~/.spacemacs.d/snippets"
         "~/.emacs.d/layers/+completion/auto-completion/local/snippets"
-        "/home/cycleke/.emacs.d/elpa/26.1/develop/yasnippet-snippets-[0-9]\{8\}.[0-9]\{4\}/snippets"
         ))
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
 
@@ -566,6 +560,8 @@
       (set-fontset-font (frame-parameter nil 'font)
                         charset
                         (font-spec :family "Microsoft Yahei" :size 14))))
+
+  (setq-default evil-escape-key-sequence "jk")
 
   (fset 'evil-visual-update-x-selection 'ignore)
 
