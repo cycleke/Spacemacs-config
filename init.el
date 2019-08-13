@@ -72,20 +72,22 @@
      (gtags :disabled-for clojure emacs-lisp javascript latex python shell-scripts)
      ;; language
      (c-c++ :variables
-            c-c++-enable-c++11 t
-            c-c++-enable-clang-support t
-            c-c++-default-mode-for-headers 'c++-mode)
+            c-c++-default-mode-for-headers 'c++-mode
+            c-c++-enable-clang-format-on-save t
+            c-c++-enable-clang-support t)
      (python :variables
              python-enable-yapf-format-on-save t
              python-fill-column 80
              python-sort-imports-on-save t
-             python-test-runner '(nose pytest))
+             python-backend 'anaconda)
      (clojure :variables clojure-enable-fancify-symbols t)
      latex
      emacs-lisp
      markdown
-     (chinese :packages youdao-dictionary fcitx
-              :variables chinese-enable-fcitx nil
+     (chinese :packages
+              youdao-dictionary fcitx
+              :variables
+              chinese-enable-fcitx t
               chinese-enable-youdao-dict t)
      (org :variables org-want-todo-bindings t)
      rust
@@ -93,6 +95,8 @@
      html
      yaml
      vimscript
+     graphviz
+     java
      ;; private
      cycleke
      irony
@@ -118,24 +122,22 @@
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages
-   '(magit-gh-pulls magit-gitflow  evil-mc realgud tern company-tern
-                    evil-args evil-ediff evil-exchange evil-unimpaired
-                    evil-indent-plus volatile-highlights smartparens
-                    spaceline holy-mode skewer-mode rainbow-delimiters
-                    highlight-indentation vi-tilde-fringe eyebrowse ws-butler
-                    org-bullets smooth-scrolling org-repo-todo org-download org-timer
-                    livid-mode git-gutter git-gutter-fringe
-                    leuven-theme gh-md evil-lisp-state spray lorem-ipsum symon
-                    ac-ispell ace-jump-mode auto-complete auto-dictionary
-                    define-word google-translate disaster epic
-                    fancy-battery org-present orgit orglue spacemacs-theme
-                    helm-flyspell flyspell-correct-helm clean-aindent-mode
-                    helm-c-yasnippet ace-jump-helm-line helm-make magithub
-                    helm-themes helm-swoop helm-spacemacs-help smeargle
-                    ido-vertical-mode flx-ido company-quickhelp
-                    window-purpose ivy-purpose helm-purpose spacemacs-purpose-popwin
-                    )
+   dotspacemacs-excluded-packages '(
+                                    magit-gh-pulls magit-gitflow evil-mc realgud tern company-tern
+                                    evil-args evil-ediff evil-exchange evil-unimpaired
+                                    evil-indent-plus volatile-highlights smartparens
+                                    holy-mode vi-tilde-fringe ws-butler rainbow-delimiters
+                                    org-bullets smooth-scrolling org-repo-todo org-download org-timer
+                                    livid-mode git-gutter git-gutter-fringe
+                                    leuven-theme gh-md evil-lisp-state spray lorem-ipsum symon
+                                    ac-ispell ace-jump-mode spacemacs-theme
+                                    define-word google-translate disaster epic
+                                    fancy-battery org-present orgit orglue
+                                    helm-flyspell flyspell-correct-helm clean-aindent-mode
+                                    helm-c-yasnippet ace-jump-helm-line helm-make magithub
+                                    helm-themes helm-swoop helm-spacemacs-help smeargle
+                                    ido-vertical-mode flx-ido company-quickhelp
+                                    window-purpose ivy-purpose helm-purpose spacemacs-purpose-popwin)
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -254,9 +256,10 @@
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         spacemacs-dark
+                         doom-tomorrow-night
                          oldlace
                          organic-green
+                         spacemacs-dark
                          doom-city-lights
                          spacemacs-light)
 
@@ -275,8 +278,8 @@
 
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("GoMono Nerd Font"
-                               :size 15
+   dotspacemacs-default-font '("Go Mono for Powerline"
+                               :size 19
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -378,7 +381,7 @@
    ;; If non-nil the frame is maximized when Emacs starts up.
    ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
    ;; (default nil) (Emacs 24.4+ only)
-   dotspacemacs-maximized-at-startup nil
+   dotspacemacs-maximized-at-startup t
 
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's active or selected.
@@ -388,7 +391,7 @@
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's inactive or deselected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
-   dotspacemacs-inactive-transparency 90
+   dotspacemacs-inactive-transparency 80
 
    ;; If non-nil show the titles of transient states. (default t)
    dotspacemacs-show-transient-state-title t
@@ -562,6 +565,7 @@
                         (font-spec :family "Microsoft Yahei" :size 14))))
 
   (setq-default evil-escape-key-sequence "jk")
+  (setq-default evil-escape-delay 0.4)
 
   (fset 'evil-visual-update-x-selection 'ignore)
 
