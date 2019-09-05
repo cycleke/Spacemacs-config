@@ -26,10 +26,6 @@ typedef vector<pii> vpii;
 #define FOR2(i, a, b, j, c, d) FOR(i, a, b) FOR(j, c, d)
 #define REP2(i, a, b, j, c, d) REP(i, a, b) REP(j, c, d)
 #define EACH(i, s) for (auto i = (s).begin(); i != (s).end(); ++i)
-#define MUL_CASE                                                               \
-  int o_o;                                                                     \
-  cin >> o_o;                                                                  \
-  for (int case_count = 0; case_count < o_o; ++case_count)
 #define debug(...) fprintf(stderr, __VA_ARGS__)
 #define dbg(x)                                                                 \
   cerr << "debug: " << __FUNCTION__ << "() @ " << __TIMESTAMP__ << "\n"        \
@@ -47,13 +43,17 @@ const ll HASH_MOD = 1610612741;
 // uniform_real_distribution<double> u_read(begin, end);
 /* -- HEAD END -- */
 
-int main() {
+void solve() {
+  $1
+}
+
+int main(int argc, char *argv[]) {
   ios::sync_with_stdio(false);
-  cin.tie(0);
-  cout.tie(0);
+  cin.tie(nullptr);
   cout << fixed << setprecision(10);
 
-  $0
+  int o_o;
+  for (${0:o_o = 1}; o_o; --o_o) solve();
 
   return 0;
 }

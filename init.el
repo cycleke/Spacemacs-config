@@ -20,11 +20,11 @@
    ;; installation feature and you have to explicitly list a layer in the
    ;; variable `dotspacemacs-configuration-layers' to install it.
    ;; (default 'unused)
-   dotspacemacs-enable-lazy-installation 'unused
+   dotspacemacs-enable-lazy-installation nil
 
    ;; If non-nil then Spacemacs will ask for confirmation before installing
    ;; a layer lazily. (default t)
-   dotspacemacs-ask-for-lazy-installation t
+   dotspacemacs-ask-for-lazy-installation nil
 
    ;; If non-nil layers with lazy install support are lazy installed.
    ;; List of additional paths where to look for configuration layers.
@@ -35,22 +35,19 @@
    dotspacemacs-configuration-layers
    '(
      ;; tool
-     (ivy :variables ivy-enable-advanced-buffer-information t)
+     better-defaults
+     search-engine
+     (ivy :variables ivy-enable-advanced-buffer-information nil)
      (colors :variables
              colors-colorize-identifiers 'all
              colors-enable-nyan-cat-progress-bar t)
-     better-defaults
-     (shell :variables
-            shell-default-shell 'eshell
-            shell-default-height 30
-            shell-default-position 'bottom)
      (syntax-checking :variables
                       syntax-checking-enable-by-default nil
                       syntax-checking-enable-tooltips nil)
      (spell-checking :variables spell-checking-enable-by-default nil)
      (spacemacs-layouts :variables
-                        layouts-autosave-delay 300
-                        layouts-enable-autosave nil)
+                        layouts-enable-autosave nil
+                        layouts-autosave-delay 300)
      (git :variables
           git-magit-status-fullscreen t
           magit-push-always-verify nil
@@ -67,31 +64,36 @@
                       auto-completion-complete-with-key-sequence nil
                       auto-completion-complete-with-key-sequence-delay nil
                       :disabled-for org markdown)
-     version-control
+     (chinese :variables chinese-default-input-method 'pinyin
+              chinese-enable-youdao-dict t)
+     dap
      lsp
-     (gtags :disabled-for clojure emacs-lisp javascript latex python shell-scripts)
+     (gtags
+      :disabled-for clojure emacs-lisp javascript latex python shell-scripts)
      ;; language
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
-            c-c++-enable-clang-format-on-save t
-            c-c++-enable-clang-support t)
+            c-c++-backend 'lsp-ccls
+            c-c++-lsp-executable (file-truename "/usr/bin/ccls"))
      (python :variables
-             python-enable-yapf-format-on-save t
-             python-fill-column 80
-             python-sort-imports-on-save t
-             python-backend 'anaconda)
+             python-test-runner '(nose pytest)
+             python-backend 'lsp
+             python-lsp-server 'mspyls
+             python-lsp-git-root "~/Softwares/python-language-server")
      (clojure :variables clojure-enable-fancify-symbols t)
      latex
      emacs-lisp
      markdown
-     (chinese :packages
-              youdao-dictionary fcitx
-              :variables
-              chinese-enable-fcitx t
-              chinese-enable-youdao-dict t)
+     (haskell :variables
+              haskell-enable-hindent t
+              haskell-completion-backend 'intero)
      (org :variables org-want-todo-bindings t)
      rust
-     (javascript :variables javascript-backend 'nil)
+     (javascript :variables javascript-backend 'lsp)
+     (typescript :variables
+                 typescript-fmt-on-save nil
+                 typescript-fmt-tool 'typescript-formatter
+                 typescript-backend 'lsp)
      html
      yaml
      vimscript
@@ -99,8 +101,7 @@
      java
      ;; private
      cycleke
-     irony
-     ;;google-c-style
+     emms
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -115,29 +116,33 @@
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(
-                                      yasnippet-snippets)
+   dotspacemacs-additional-packages '(sicp ssh-agency)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(
-                                    magit-gh-pulls magit-gitflow evil-mc realgud tern company-tern
-                                    evil-args evil-ediff evil-exchange evil-unimpaired
-                                    evil-indent-plus volatile-highlights smartparens
-                                    holy-mode vi-tilde-fringe ws-butler rainbow-delimiters
-                                    org-bullets smooth-scrolling org-repo-todo org-download org-timer
-                                    livid-mode git-gutter git-gutter-fringe
-                                    leuven-theme gh-md evil-lisp-state spray lorem-ipsum symon
-                                    ac-ispell ace-jump-mode spacemacs-theme
-                                    define-word google-translate disaster epic
-                                    fancy-battery org-present orgit orglue
-                                    helm-flyspell flyspell-correct-helm clean-aindent-mode
-                                    helm-c-yasnippet ace-jump-helm-line helm-make magithub
-                                    helm-themes helm-swoop helm-spacemacs-help smeargle
-                                    ido-vertical-mode flx-ido company-quickhelp
-                                    window-purpose ivy-purpose helm-purpose spacemacs-purpose-popwin)
+   dotspacemacs-excluded-packages
+   '(
+     ac-ispell ace-jump-helm-line ace-jump-mode auto-complete
+     auto-dictionary clang-format clean-aindent-mode
+     company-quickhelp company-tern define-word disaster
+     epic evil-args evil-ediff evil-exchange
+     evil-indent-plus evil-lisp-state evil-mc evil-unimpaired
+     eyebrowse fancy-battery flx-ido flyspell-correct-helm
+     gh-md git-gutter git-gutter-fringe google-translate
+     helm-c-yasnippet helm-flyspell helm-make helm-purpose
+     helm-spacemacs-help helm-swoop helm-themes highlight-indentation
+     holy-mode ido-vertical-mode ivy-purpose ivy-rich
+     leuven-theme livid-mode lorem-ipsum magit-gh-pulls
+     magit-gitflow magithub org-brain org-bullets org-download
+     org-present org-projectile org-repo-todo org-timer
+     orgit orglue rainbow-delimiters realgud skewer-mode
+     smartparens smeargle smooth-scrolling spaceline
+     spacemacs-purpose-popwin spacemacs-theme spray
+     symon tern vi-tilde-fringe volatile-highlights
+     window-purpose ws-butler
+     )
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -256,11 +261,12 @@
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
+                         doom-nord-light
+                         doom-opera-light
+                         organic-green
                          doom-tomorrow-night
                          oldlace
-                         organic-green
                          spacemacs-dark
-                         doom-city-lights
                          spacemacs-light)
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
@@ -279,10 +285,9 @@
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Go Mono for Powerline"
-                               :size 19
+                               :size 18
                                :weight normal
-                               :width normal
-                               :powerline-scale 1.1)
+                               :width normal)
 
    ;; The leader key (default "SPC")
    dotspacemacs-leader-key "SPC"
@@ -520,11 +525,10 @@
           ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
           ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
 
-  (setq company-backends-c-mode-common '((company-c-headers
-                                          company-irony
-                                          company-irony-c-headers
-                                          company-dabbrev :with company-yasnippet
-                                          )))
+  (setq socks-server '("Default server" "127.0.0.1" 2000 5))
+  (setq evil-shift-round nil)
+  (setq byte-compile-warnings '(not obsolete))
+  (setq warning-minimum-level :error)
   )
 
 
@@ -553,7 +557,7 @@
   ;; 解决org表格里面中英文对齐的问题
   (when (configuration-layer/layer-usedp 'chinese)
     (when (and (spacemacs/system-is-mac) window-system)
-      (spacemacs//set-monospaced-font "Source Code Pro for powerline" "Hiragino Sans GB" 14 16)))
+      (spacemacs//set-monospaced-font "Source Code Pro for powerline" "Hiragino Sans GB" 18 18)))
   ;; Setting Chinese Font
   (when (and (spacemacs/system-is-mswindows) window-system)
     (setq ispell-program-name "aspell")
@@ -562,7 +566,7 @@
     (dolist (charset '(kana han symbol cjk-misc bopomofo))
       (set-fontset-font (frame-parameter nil 'font)
                         charset
-                        (font-spec :family "Microsoft Yahei" :size 14))))
+                        (font-spec :family "Microsoft Yahei" :size 18))))
 
   (setq-default evil-escape-key-sequence "jk")
   (setq-default evil-escape-delay 0.4)
