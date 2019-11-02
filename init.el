@@ -75,11 +75,7 @@
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-backend 'lsp-ccls
             c-c++-lsp-executable (file-truename "/usr/bin/ccls"))
-     (python :variables
-             python-test-runner '(nose pytest)
-             python-backend 'lsp
-             python-lsp-server 'mspyls
-             python-lsp-git-root "~/Softwares/python-language-server")
+     python
      (clojure :variables clojure-enable-fancify-symbols t)
      latex
      emacs-lisp
@@ -101,7 +97,6 @@
      java
      ;; private
      cycleke
-     emms
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -116,7 +111,7 @@
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(sicp ssh-agency)
+   dotspacemacs-additional-packages '(sicp ssh-agency exec-path-from-shell tldr)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -286,6 +281,7 @@
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Go Mono for Powerline"
                                :size 18
+                               :scale 1.2
                                :weight normal
                                :width normal)
 
