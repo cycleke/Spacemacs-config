@@ -70,6 +70,7 @@
      lsp
      (gtags
       :disabled-for clojure emacs-lisp javascript latex python shell-scripts)
+     cmake
      ;; language
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
@@ -256,11 +257,11 @@
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         doom-nord-light
                          doom-opera-light
+                         doom-nord-light
                          organic-green
-                         doom-tomorrow-night
                          oldlace
+                         doom-city-lights
                          spacemacs-dark
                          spacemacs-light)
 
@@ -427,7 +428,7 @@
 
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
-   dotspacemacs-folding-method 'evil
+   dotspacemacs-folding-method 'origami
 
    ;; If non-nil `smartparens-strict-mode' will be enabled in programming modes.
    ;; (default nil)
@@ -592,8 +593,4 @@
                '("Capstanfile\\'" . yaml-mode))
 
   (setq inhibit-compacting-font-caches t)
-  (global-display-line-numbers-mode -1)
-
-  (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
-  (load custom-file 'no-error 'no-message)
-  )
+  (global-display-line-numbers-mode -1))
