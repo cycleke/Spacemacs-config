@@ -554,7 +554,7 @@
   ;; 解决org表格里面中英文对齐的问题
   (when (configuration-layer/layer-usedp 'chinese)
     (when (and (spacemacs/system-is-mac) window-system)
-      (spacemacs//set-monospaced-font "Source Code Pro for powerline" "Hiragino Sans GB" 18 18)))
+      (spacemacs//set-monospaced-font "Go Mono for Powerline" "PingFang SC" 18 18)))
   ;; Setting Chinese Font
   (when (and (spacemacs/system-is-mswindows) window-system)
     (setq ispell-program-name "aspell")
@@ -563,7 +563,7 @@
     (dolist (charset '(kana han symbol cjk-misc bopomofo))
       (set-fontset-font (frame-parameter nil 'font)
                         charset
-                        (font-spec :family "Microsoft Yahei" :size 18))))
+                        (font-spec :family "PingFang SC" :size 18))))
 
   (setq-default evil-escape-key-sequence "jk")
   (setq-default evil-escape-delay 0.4)

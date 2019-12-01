@@ -11,8 +11,6 @@
         (compile (concat "gcc " filename " -o " progname " -O2 -Wall -lm -std=gnu11 -static")))
     (if (or (string= suffix "cc") (string= suffix "cpp"))
         (compile (concat "g++ " filename " -o " progname " -O2 -Wall -lm -std=gnu++14 -static")))
-    (if (string= suffix "tex")
-        (compile (concat "xelatex " filename)))
     (if (string= suffix "java")
         (compile (concat "javac -encoding UTF-8 -sourcepath . -d . " filename)))
     ))
